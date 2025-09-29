@@ -1,6 +1,23 @@
 "use client";
 
-import { Hotel, Plane, Route, Train, LucideIcon } from "lucide-react";
+import {
+  Hotel,
+  Plane,
+  Train,
+  Camera,
+  Ticket,
+  Bus,
+  Car,
+  Bot,
+  BookOpen,
+  Map,
+  ShoppingBag,
+  CreditCard,
+  Wallet,
+  Building2,
+  LucideIcon,
+  Menu,
+} from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import {
@@ -23,6 +40,7 @@ type SidebarItem =
       url?: string;
       secondary?: Array<{ name: string; url: string }>;
       type?: never;
+      isActive?: boolean;
     }
   | {
       type: "separator";
@@ -30,11 +48,12 @@ type SidebarItem =
       icon?: never;
       url?: never;
       secondary?: never;
+      isActive?: never;
     };
 
 const data: SidebarItem[] = [
   {
-    name: "Hotel",
+    name: "酒店",
     icon: Hotel,
     url: "#",
     secondary: [
@@ -46,10 +65,14 @@ const data: SidebarItem[] = [
         name: "国际酒店",
         url: "#",
       },
+      {
+        name: "民宿·客栈",
+        url: "#",
+      },
     ],
   },
   {
-    name: "Plane",
+    name: "机票",
     icon: Plane,
     url: "#",
     secondary: [
@@ -69,27 +92,92 @@ const data: SidebarItem[] = [
         name: "值机选座",
         url: "#",
       },
-      {
-        name: "退票改签",
-        url: "#",
-      },
-      {
-        name: "报销凭证",
-        url: "#",
-      },
     ],
   },
   {
-    name: "Train",
+    name: "火车票",
     icon: Train,
     url: "#",
+    isActive: true,
     secondary: [
       {
         name: "国内火车票",
         url: "#",
       },
       {
-        name: "国际火车票",
+        name: "国际/中国港澳台",
+        url: "#",
+      },
+    ],
+  },
+  {
+    name: "旅游",
+    icon: Camera,
+    url: "#",
+    secondary: [
+      {
+        name: "跟团游",
+        url: "#",
+      },
+      {
+        name: "自由行",
+        url: "#",
+      },
+      {
+        name: "当地玩乐",
+        url: "#",
+      },
+    ],
+  },
+  {
+    name: "门票·活动",
+    icon: Ticket,
+    url: "#",
+    secondary: [
+      {
+        name: "景点门票",
+        url: "#",
+      },
+      {
+        name: "演出票务",
+        url: "#",
+      },
+      {
+        name: "活动体验",
+        url: "#",
+      },
+    ],
+  },
+  {
+    name: "汽车·船票",
+    icon: Bus,
+    url: "#",
+    secondary: [
+      {
+        name: "汽车票",
+        url: "#",
+      },
+      {
+        name: "船票",
+        url: "#",
+      },
+    ],
+  },
+  {
+    name: "用车",
+    icon: Car,
+    url: "#",
+    secondary: [
+      {
+        name: "接送机",
+        url: "#",
+      },
+      {
+        name: "包车游",
+        url: "#",
+      },
+      {
+        name: "当地用车",
         url: "#",
       },
     ],
@@ -99,7 +187,71 @@ const data: SidebarItem[] = [
   },
   {
     name: "AI行程助手",
-    icon: Route,
+    icon: Bot,
+    url: "#",
+  },
+  {
+    name: "攻略·景点",
+    icon: BookOpen,
+    url: "#",
+    secondary: [
+      {
+        name: "旅游攻略",
+        url: "#",
+      },
+      {
+        name: "景点介绍",
+        url: "#",
+      },
+    ],
+  },
+  {
+    name: "旅游地图",
+    icon: Map,
+    url: "#",
+  },
+  {
+    name: "全球购",
+    icon: ShoppingBag,
+    url: "#",
+    secondary: [
+      {
+        name: "免税店",
+        url: "#",
+      },
+      {
+        name: "特产商城",
+        url: "#",
+      },
+    ],
+  },
+  {
+    name: "礼品卡",
+    icon: CreditCard,
+    url: "#",
+  },
+  {
+    name: "携程金融",
+    icon: Wallet,
+    url: "#",
+    secondary: [
+      {
+        name: "分期付款",
+        url: "#",
+      },
+      {
+        name: "保险服务",
+        url: "#",
+      },
+    ],
+  },
+  {
+    type: "separator",
+  },
+  {
+    name: "企业商旅",
+    icon: Building2,
+    url: "#",
   },
 ];
 
@@ -114,14 +266,14 @@ function HoverMenu({ items, show, position }: HoverMenuProps) {
 
   return (
     <div
-      className="fixed left-16 z-50 min-w-[200px] rounded-md border bg-popover p-1 text-popover-foreground shadow-lg transition-all duration-200 ease-out animate-in fade-in-0 slide-in-from-left-1"
+      className="fixed left-16 z-50 min-w-[200px] rounded-lg border bg-white shadow-lg transition-all duration-200 ease-out animate-in fade-in-0 slide-in-from-left-1"
       style={{ top: position.top }}
     >
       {items.map((item, index) => (
         <a
           key={index}
           href={item.url}
-          className="block px-3 py-2 text-sm rounded-sm hover:bg-accent hover:text-accent-foreground transition-colors duration-150"
+          className="block px-4 py-3 text-sm text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors duration-150 first:rounded-t-lg last:rounded-b-lg"
         >
           {item.name}
         </a>
@@ -154,7 +306,6 @@ export default function MainSidebar() {
   };
 
   const handleMouseLeave = () => {
-    // Add a small delay to prevent flickering when moving between sidebar and hover menu
     setTimeout(() => {
       setHoveredItem(null);
     }, 100);
@@ -172,20 +323,28 @@ export default function MainSidebar() {
     <>
       <Sidebar
         collapsible="icon"
-        className="border-r transition-all duration-300"
+        className="border-r border-gray-200 bg-gray-50 transition-all duration-300"
       >
-        <SidebarContent>
+        <SidebarContent className="px-2 py-4">
+          {/* 汉堡菜单按钮 */}
+          <div className="mb-4 px-2">
+            <SidebarTrigger className="h-8 w-8 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors" />
+          </div>
+
           <SidebarGroup>
             <SidebarGroupContent>
-              <SidebarMenu>
+              <SidebarMenu className="space-y-1">
                 {data.map((item, index) => {
                   if (item.type === "separator") {
-                    return <SidebarSeparator key={index} className="my-2" />;
+                    return (
+                      <div key={index} className="h-px bg-gray-200 my-3 mx-2" />
+                    );
                   }
 
                   const IconComponent = item.icon;
                   const hasSecondary =
                     item.secondary && item.secondary.length > 0;
+                  const isActive = item.isActive;
 
                   return (
                     <SidebarMenuItem key={index}>
@@ -193,13 +352,17 @@ export default function MainSidebar() {
                         asChild
                         tooltip={state === "collapsed" ? item.name : undefined}
                         className={cn(
-                          "h-12 transition-all duration-200",
+                          "h-12 px-3 transition-all duration-200 rounded-xl group relative",
+                          "hover:bg-blue-50 hover:text-blue-600",
+                          isActive &&
+                            "bg-blue-500 text-white hover:bg-blue-600 hover:text-white shadow-md",
                           hasSecondary &&
                             state === "collapsed" &&
                             "cursor-pointer",
                           hoveredItem?.index === index &&
                             state === "collapsed" &&
-                            "bg-accent"
+                            !isActive &&
+                            "bg-blue-50 text-blue-600"
                         )}
                         onMouseEnter={e =>
                           handleMouseEnter(index, item.secondary, e)
@@ -211,13 +374,39 @@ export default function MainSidebar() {
                           className="flex items-center gap-3 w-full"
                         >
                           {IconComponent && (
-                            <IconComponent className="h-5 w-5 shrink-0" />
+                            <IconComponent
+                              className={cn(
+                                "h-5 w-5 shrink-0 transition-colors",
+                                isActive ? "text-white" : "text-blue-500"
+                              )}
+                            />
                           )}
-                          <span className="transition-all duration-200 group-data-[collapsible=icon]:opacity-0 group-data-[collapsible=icon]:w-0 overflow-hidden">
+                          <span
+                            className={cn(
+                              "transition-all duration-200 font-medium text-sm",
+                              "group-data-[collapsible=icon]:opacity-0 group-data-[collapsible=icon]:w-0 overflow-hidden",
+                              isActive ? "text-white" : "text-gray-700"
+                            )}
+                          >
                             {item.name}
                           </span>
                         </a>
                       </SidebarMenuButton>
+
+                      {/* 展开状态下的子菜单 */}
+                      {hasSecondary && state === "expanded" && isActive && (
+                        <div className="ml-8 mt-1 space-y-1">
+                          {item.secondary?.map((subItem, subIndex) => (
+                            <a
+                              key={subIndex}
+                              href={subItem.url}
+                              className="block px-3 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                            >
+                              {subItem.name}
+                            </a>
+                          ))}
+                        </div>
+                      )}
                     </SidebarMenuItem>
                   );
                 })}
