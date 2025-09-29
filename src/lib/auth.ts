@@ -6,4 +6,8 @@ export const auth = betterAuth({
   database: drizzleAdapter(db, {
     provider: "pg", // or "mysql", "sqlite"
   }),
+
+  plugins: [
+    // you can add plugins here
+  ],
 });
