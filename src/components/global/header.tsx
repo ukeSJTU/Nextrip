@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Moon, Sun, Globe } from "lucide-react";
+import { Moon, Sun, Globe, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -122,9 +122,7 @@ export default function Header() {
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" size="icon">
-                    <span className="h-[1.2rem] w-[1.2rem] flex items-center justify-center">
-                      ☰
-                    </span>
+                    <Menu className="h-[1.2rem] w-[1.2rem]" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-48">
