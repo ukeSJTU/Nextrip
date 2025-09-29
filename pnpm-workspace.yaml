@@ -1,5 +1,6 @@
 onlyBuiltDependencies:
   - '@infisical/cli'
   - '@tailwindcss/oxide'
+  - esbuild
   - sharp
   - unrs-resolver
