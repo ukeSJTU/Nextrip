@@ -4,6 +4,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import Header from "@/components/global/header";
 import Footer from "@/components/global/footer";
+import { SidebarProvider } from "@/components/ui/sidebar";
+import MainSidebar from "@/components/global/sidebar";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -37,12 +39,15 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="min-h-screen flex flex-col">
-            <Header />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </div>
-          <Toaster />
+          <SidebarProvider>
+            <MainSidebar />
+            <div className="min-h-screen flex flex-col">
+              <Header />
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </div>
+            <Toaster />
+          </SidebarProvider>
         </ThemeProvider>
       </body>
     </html>
