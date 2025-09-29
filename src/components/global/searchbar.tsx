@@ -6,8 +6,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 
+/**
+ * SearchBar component renders an input field and a search icon button.
+ * When the button is clicked or Enter is pressed, it logs the search query
+ * and displays a toast notification indicating that the search has been initiated.
+ * Actual search logic is not implemented.
+ *
+ * @returns {JSX.Element} The rendered search bar component.
+ */
 export default function SearchBar() {
-  // A input field + an search icon button, when clicked, console.log what is being searched and use toast to show that search has been initiated, we don't implement actual search logic for now.
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearch = () => {
