@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+"Nextrip", an online travel agent platform where you can book tickets for trains, planes and even cruise. Find the travel that you want most!
 
 ## Getting Started
 
-First, run the development server:
+### Install dependencies
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Config files
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+cp .env.example .env.local
+vim .env.local
+# And change required fields
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Run dev server
 
-## Learn More
+```bash
+pnpm dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Then go to `http://localhost:3000` and you should see the home page of this project.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Develop
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+To develop on this project:
 
-## Deploy on Vercel
+```bash
+git branch -a
+git checkout develop
+git checkout -b <new_branch_name>
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+TODO: add more info on PR and merging.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deployment
+
+Currently, the `main` branch of this projecct is automatically deployed on the vercel platform.
+
+## TeckStack
+
+- Framework: `Next.js`
+- Package manager: `pnpm`
+- ORM: `drizzle-orm`
+- SQL db: `pgsql`
+- CI/CD: `vercel` and `github actions`
+- UI: `shadcn`
+- Code Quality: `ESLint`, `Prettier`, `Husky`
+- Data Validation: `Zod`
