@@ -35,7 +35,7 @@ export default function SearchBar() {
         placeholder="Search destinations..."
         value={searchQuery}
         onChange={e => setSearchQuery(e.target.value)}
-        onKeyPress={handleKeyPress}
+        onKeyDown={handleKeyPress}
         className="flex-1"
       />
       <Button
