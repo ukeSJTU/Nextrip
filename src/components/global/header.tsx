@@ -13,9 +13,9 @@ import {
 import { useTheme } from "next-themes";
 import SearchBar from "./searchbar";
 
-// From left to right, the header should contains: Favicon and text"Nextrip", then is the searchbar, then two buttons, one is SignIn, ne in SignUp, next is my orders, next is contact. Last are two iconed buttons, one is light/dark mode switch, another one is language(English vs Chinese) switcher. Default to english, when clicked switch to another one.
+// From left to right, the header should contain: Favicon and text "Nextrip", then the searchbar, then two buttons (one is SignIn, one is SignUp), next is My Orders, then Contact. Last are two icon buttons: one is a light/dark mode switch, the other is a language (English vs Chinese) switcher. Default to English; when clicked, switch to the other language.
 
-// Do not implement any actual logic except clicking the favicon area(including the text) should go back to homepage. Others should just consle log
+// Do not implement any actual logic except clicking the favicon area (including the text), which should go back to the homepage. For all other actions, just console log.
 
 export default function Header() {
   const router = useRouter();
