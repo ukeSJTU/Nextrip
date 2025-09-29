@@ -15,8 +15,6 @@ import SearchBar from "./searchbar";
 
 // From left to right, the header should contain: Favicon and text "Nextrip", then the searchbar, then two buttons (one is SignIn, one is SignUp), next is My Orders, then Contact. Last are two icon buttons: one is a light/dark mode switch, the other is a language (English vs Chinese) switcher. Default to English; when clicked, switch to the other language.
 
-// Do not implement any actual logic except clicking the favicon area (including the text), which should go back to the homepage. For all other actions, just console log.
-
 export default function Header() {
   const router = useRouter();
   const { setTheme, theme } = useTheme();
