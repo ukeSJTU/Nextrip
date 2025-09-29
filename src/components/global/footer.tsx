@@ -1,5 +1,6 @@
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
 export default function Footer() {
   return (
@@ -28,25 +29,75 @@ export default function Footer() {
           {/* Quick Links */}
           <div className="space-y-4">
             <h3 className="font-semibold">Quick Links</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>About Us</li>
-              <li>Destinations</li>
-              <li>Travel Guides</li>
-              <li>Blog</li>
-              <li>FAQ</li>
-            </ul>
+            <div className="space-y-2">
+              <Button
+                variant="link"
+                className="p-0 h-auto text-sm text-muted-foreground justify-start"
+              >
+                About Us
+              </Button>
+              <Button
+                variant="link"
+                className="p-0 h-auto text-sm text-muted-foreground justify-start"
+              >
+                Destinations
+              </Button>
+              <Button
+                variant="link"
+                className="p-0 h-auto text-sm text-muted-foreground justify-start"
+              >
+                Travel Guides
+              </Button>
+              <Button
+                variant="link"
+                className="p-0 h-auto text-sm text-muted-foreground justify-start"
+              >
+                Blog
+              </Button>
+              <Button
+                variant="link"
+                className="p-0 h-auto text-sm text-muted-foreground justify-start"
+              >
+                FAQ
+              </Button>
+            </div>
           </div>
 
           {/* Support */}
           <div className="space-y-4">
             <h3 className="font-semibold">Support</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>Customer Service</li>
-              <li>Booking Help</li>
-              <li>Cancellation Policy</li>
-              <li>Travel Insurance</li>
-              <li>Contact Us</li>
-            </ul>
+            <div className="space-y-2">
+              <Button
+                variant="link"
+                className="p-0 h-auto text-sm text-muted-foreground justify-start"
+              >
+                Customer Service
+              </Button>
+              <Button
+                variant="link"
+                className="p-0 h-auto text-sm text-muted-foreground justify-start"
+              >
+                Booking Help
+              </Button>
+              <Button
+                variant="link"
+                className="p-0 h-auto text-sm text-muted-foreground justify-start"
+              >
+                Cancellation Policy
+              </Button>
+              <Button
+                variant="link"
+                className="p-0 h-auto text-sm text-muted-foreground justify-start"
+              >
+                Travel Insurance
+              </Button>
+              <Button
+                variant="link"
+                className="p-0 h-auto text-sm text-muted-foreground justify-start"
+              >
+                Contact Us
+              </Button>
+            </div>
           </div>
 
           {/* Contact Info */}
@@ -68,10 +119,25 @@ export default function Footer() {
           <div className="text-sm text-muted-foreground">
             © 2024 Nextrip. All rights reserved.
           </div>
-          <div className="flex space-x-6 text-sm text-muted-foreground">
-            <span>Privacy Policy</span>
-            <span>Terms of Service</span>
-            <span>Cookie Policy</span>
+          <div className="flex space-x-6 text-sm">
+            <Button
+              variant="link"
+              className="p-0 h-auto text-sm text-muted-foreground"
+            >
+              Privacy Policy
+            </Button>
+            <Button
+              variant="link"
+              className="p-0 h-auto text-sm text-muted-foreground"
+            >
+              Terms of Service
+            </Button>
+            <Button
+              variant="link"
+              className="p-0 h-auto text-sm text-muted-foreground"
+            >
+              Cookie Policy
+            </Button>
           </div>
         </div>
       </div>

@@ -58,15 +58,16 @@ export default function Header() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo and Brand */}
           <div className="flex items-center space-x-2">
-            <button
+            <Button
+              variant="ghost"
               onClick={handleLogoClick}
-              className="flex items-center space-x-2 text-xl font-bold hover:opacity-80 transition-opacity"
+              className="flex items-center space-x-2 text-xl font-bold p-2 h-auto"
             >
               <div className="h-8 w-8 bg-primary rounded-md flex items-center justify-center text-primary-foreground">
                 N
               </div>
               <span>Nextrip</span>
-            </button>
+            </Button>
           </div>
 
           {/* Search Bar */}
