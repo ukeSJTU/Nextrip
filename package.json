@@ -72,6 +72,7 @@
     "@commitlint/cli": "^20.0.0",
     "@commitlint/config-conventional": "^20.0.0",
     "@eslint/eslintrc": "^3",
+    "@faker-js/faker": "^10.0.0",
     "@infisical/cli": "^0.42.6",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
