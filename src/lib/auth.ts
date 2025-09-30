@@ -2,6 +2,7 @@ import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { db } from "@/lib/db";
 import { phoneNumber } from "better-auth/plugins";
+import { faker } from "@faker-js/faker";
 
 export const auth = betterAuth({
   emailAndPassword: {
@@ -28,6 +29,14 @@ export const auth = betterAuth({
 
         // 模拟发送成功
         return Promise.resolve();
+      },
+      signUpOnVerification: {
+        getTempEmail: phoneNumber => `${phoneNumber}@nextrip.com`,
+        getTempName(phoneNumber) {
+          const lastFour = phoneNumber.slice(-4);
+          // 使用 faker 生成随机名字并拼接手机号后四位，避免冲突
+          return `${faker.person.firstName()}${lastFour}`;
+        },
       },
     }),
   ],
