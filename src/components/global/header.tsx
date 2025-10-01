@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useTheme } from "next-themes";
 import SearchBar from "./searchbar";
+import Link from "next/link";
 
 // From left to right, the header should contain: Favicon and text "Nextrip", then the searchbar, then two buttons (one is SignIn, one is SignUp), next is My Orders, then Contact. Last are two icon buttons: one is a light/dark mode switch, the other is a language (English vs Chinese) switcher. Default to English; when clicked, switch to the other language.
 
@@ -78,9 +79,11 @@ export default function Header() {
             {/* Auth Buttons */}
             <div className="hidden md:flex items-center space-x-2">
               <Button variant="ghost" onClick={handleSignIn}>
-                Sign In
+                <Link href="/signin">Sign In</Link>
               </Button>
-              <Button onClick={handleSignUp}>Sign Up</Button>
+              <Button onClick={handleSignUp}>
+                <Link href="/signup">Sign Up</Link>
+              </Button>
             </div>
 
             {/* Navigation Links */}
