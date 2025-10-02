@@ -14,6 +14,19 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
   Form,
   FormControl,
   FormField,
@@ -28,6 +41,8 @@ import {
 } from "@/components/ui/input-otp";
 import { UseFormReturn } from "react-hook-form";
 import { authClient } from "@/lib/auth/auth-client";
+import { Check, ChevronsUpDown } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export interface PhoneVerificationForm {
   regionCode: string;
@@ -43,15 +58,39 @@ interface PhoneVerificationStepProps {
 }
 
 const regionCodes = [
-  { value: "+86", label: "+86 中国" },
-  { value: "+1", label: "+1 美国/加拿大" },
-  { value: "+44", label: "+44 英国" },
-  { value: "+81", label: "+81 日本" },
-  { value: "+82", label: "+82 韩国" },
-  { value: "+65", label: "+65 新加坡" },
-  { value: "+852", label: "+852 香港" },
-  { value: "+853", label: "+853 澳门" },
-  { value: "+886", label: "+886 台湾" },
+  { value: "+86", label: "+86 中国", searchTerms: ["86", "中国", "china"] },
+  {
+    value: "+1",
+    label: "+1 美国/加拿大",
+    searchTerms: ["1", "美国", "加拿大", "usa", "canada", "united states"],
+  },
+  {
+    value: "+44",
+    label: "+44 英国",
+    searchTerms: ["44", "英国", "uk", "united kingdom"],
+  },
+  { value: "+81", label: "+81 日本", searchTerms: ["81", "日本", "japan"] },
+  {
+    value: "+82",
+    label: "+82 韩国",
+    searchTerms: ["82", "韩国", "korea", "south korea"],
+  },
+  {
+    value: "+65",
+    label: "+65 新加坡",
+    searchTerms: ["65", "新加坡", "singapore"],
+  },
+  {
+    value: "+852",
+    label: "+852 香港",
+    searchTerms: ["852", "香港", "hong kong", "hk"],
+  },
+  {
+    value: "+853",
+    label: "+853 澳门",
+    searchTerms: ["853", "澳门", "macau", "macao"],
+  },
+  { value: "+886", label: "+886 台湾", searchTerms: ["886", "台湾", "taiwan"] },
 ];
 
 export function PhoneVerificationStep({
@@ -64,6 +103,7 @@ export function PhoneVerificationStep({
   const [phoneError, setPhoneError] = useState("");
   const [otpSuccess, setOtpSuccess] = useState("");
   const [lastVerifiedPhone, setLastVerifiedPhone] = useState("");
+  const [open, setOpen] = useState(false);
 
   // 倒计时逻辑
   useEffect(() => {
@@ -142,24 +182,56 @@ export function PhoneVerificationStep({
                 control={form.control}
                 name="regionCode"
                 render={({ field }) => (
-                  <FormItem className="w-32">
-                    <FormControl>
-                      <Select
-                        value={field.value}
-                        onValueChange={field.onChange}
-                      >
-                        <SelectTrigger>
-                          <SelectValue placeholder="选择区号" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {regionCodes.map(region => (
-                            <SelectItem key={region.value} value={region.value}>
-                              {region.label}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </FormControl>
+                  <FormItem className="w-40">
+                    <Popover open={open} onOpenChange={setOpen}>
+                      <PopoverTrigger asChild>
+                        <FormControl>
+                          <Button
+                            variant="outline"
+                            role="combobox"
+                            aria-expanded={open}
+                            className="w-full justify-between"
+                          >
+                            {field.value
+                              ? regionCodes.find(
+                                  region => region.value === field.value
+                                )?.label
+                              : "选择区号"}
+                            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                          </Button>
+                        </FormControl>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-[200px] p-0">
+                        <Command>
+                          <CommandInput placeholder="搜索区号或国家..." />
+                          <CommandList>
+                            <CommandEmpty>未找到匹配的区号</CommandEmpty>
+                            <CommandGroup>
+                              {regionCodes.map(region => (
+                                <CommandItem
+                                  key={region.value}
+                                  value={region.searchTerms.join(" ")}
+                                  onSelect={() => {
+                                    field.onChange(region.value);
+                                    setOpen(false);
+                                  }}
+                                >
+                                  <Check
+                                    className={cn(
+                                      "mr-2 h-4 w-4",
+                                      field.value === region.value
+                                        ? "opacity-100"
+                                        : "opacity-0"
+                                    )}
+                                  />
+                                  {region.label}
+                                </CommandItem>
+                              ))}
+                            </CommandGroup>
+                          </CommandList>
+                        </Command>
+                      </PopoverContent>
+                    </Popover>
                     <FormMessage />
                   </FormItem>
                 )}
